@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            background-color: #000; /* Fallback for background */
+            overflow-x: hidden;
+            background-color: #000;
         }
         .animated-background {
             position: fixed;
@@ -19,8 +19,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
             background: linear-gradient(45deg, #000000, #0A0A0A, #000000);
+            background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
         }
         @keyframes gradientAnimation {
@@ -33,247 +33,179 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: particleMove 20s infinite ease-in-out;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            pointer-events: none;
         }
         @keyframes particleMove {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-            25% { transform: translate(20vw, 30vh) scale(1.2); opacity: 0.7; }
-            50% { transform: translate(50vw, 0) scale(0.8); opacity: 0.4; }
-            75% { transform: translate(30vw, 40vh) scale(1.1); opacity: 0.6; }
-            100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-        }
-        .section-padding {
-            padding: 4rem 1rem;
-        }
-        @media (min-width: 768px) {
-            .section-padding {
-                padding: 6rem 4rem;
-            }
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(30vw, 20vh) scale(1.5); opacity: 0.6; }
         }
         .service-card {
-            background-color: rgba(255, 255, 255, 0.08); /* Slightly more opaque */
-            backdrop-filter: blur(8px); /* More blur */
-            border: 1px solid rgba(255, 255, 255, 0.15); /* Stronger border */
-            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smoother transition */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Initial shadow */
-            border-radius: 1.5rem; /* More rounded */
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .service-card:hover {
-            transform: translateY(-15px) scale(1.02); /* More pronounced lift and slight scale */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .animate-fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .animate-fade-in {
-            opacity: 0;
-            animation: fadeIn 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .animate-fade-in.delay-500 { animation-delay: 0.5s; }
-        .animate-fade-in.delay-1000 { animation-delay: 1s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        .text-justify {
-            text-align: justify;
+        .text-balance {
+            text-wrap: balance;
         }
     </style>
 </head>
-<body class="text-white">
-    <!-- Animated Background -->
+<body class="text-white antialiased">
+    <!-- Fondo Animado -->
     <div class="animated-background">
-        <div class="particle" style="width: 15px; height: 15px; top: 10%; left: 20%; animation-delay: 0s;"></div>
-        <div class="particle" style="width: 20px; height: 20px; top: 50%; left: 70%; animation-delay: 5s;"></div>
-        <div class="particle" style="width: 10px; height: 10px; top: 80%; left: 40%; animation-delay: 10s;"></div>
-        <div class="particle" style="width: 25px; height: 25px; top: 30%; left: 90%; animation-delay: 2s;"></div>
-        <div class="particle" style="width: 18px; height: 18px; top: 65%; left: 10%; animation-delay: 7s;"></div>
-        <div class="particle" style="width: 22px; height: 22px; top: 25%; left: 5%; animation-delay: 3s;"></div>
-        <div class="particle" style="width: 12px; height: 12px; top: 70%; left: 85%; animation-delay: 8s;"></div>
+        <div class="particle w-4 h-4 top-[10%] left-[20%]" style="animation-delay: 0s;"></div>
+        <div class="particle w-6 h-6 top-[50%] left-[70%]" style="animation-delay: 5s;"></div>
+        <div class="particle w-3 h-3 top-[80%] left-[40%]" style="animation-delay: 10s;"></div>
+        <div class="particle w-8 h-8 top-[30%] left-[90%]" style="animation-delay: 2s;"></div>
     </div>
 
-    <!-- Header -->
-    <header class="relative z-10 py-6 px-4 md:px-8 bg-black bg-opacity-70 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center">
-                <!-- Logo removed, only name remains -->
-                <h1 class="text-3xl font-bold text-white">AEROVISION</h1>
-            </div>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#inicio" class="text-white hover:text-blue-400 transition-colors duration-300">Inicio</a></li>
-                    <li><a href="#quienes-somos" class="text-white hover:text-blue-400 transition-colors duration-300">Quiénes Somos</a></li>
-                    <li><a href="#nuestros-servicios" class="text-white hover:text-blue-400 transition-colors duration-300">Servicios</a></li>
-                    <li><a href="#inversion" class="text-white hover:text-blue-400 transition-colors duration-300">Inversión</a></li>
-                    <li><a href="#contacto" class="text-white hover:text-blue-400 transition-colors duration-300">Contacto</a></li>
+    <!-- Navegación -->
+    <header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold tracking-tighter">AEROVISION</h1>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8 text-sm font-medium">
+                    <li><a href="#inicio" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    <li><a href="#quienes-somos" class="hover:text-blue-400 transition-colors">Quiénes Somos</a></li>
+                    <li><a href="#servicios" class="hover:text-blue-400 transition-colors">Servicios</a></li>
+                    <li><a href="#contacto" class="hover:text-blue-400 transition-colors">Contacto</a></li>
                 </ul>
             </nav>
+            <a href="https://wa.link/xdm81w" target="_blank" class="text-xs md:text-sm bg-blue-600 px-4 py-2 rounded-full font-bold hover:bg-blue-700 transition-all">WhatsApp</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="relative z-10 flex items-center justify-center min-h-screen text-center section-padding">
-        <div class="container mx-auto px-4">
-            <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
-                Impulsa tu <span class="text-blue-400">Marca</span> al Siguiente Nivel
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl sm:text-6xl md:text-7xl font-extrabold mb-6 leading-tight text-balance">
+                Impulsa tu <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Marca</span> al Siguiente Nivel
             </h2>
-            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-fade-in delay-500">
-                En AEROVISION, creamos estrategias de marketing y publicidad que generan crecimiento y posicionamiento duradero.
+            <p class="text-base md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Estrategias de marketing y publicidad que generan crecimiento y posicionamiento duradero.
             </p>
-            <a href="#nuestros-servicios" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in delay-1000">
-                Descubre Nuestros Servicios
-            </a>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#servicios" class="w-full sm:w-auto bg-blue-600 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-blue-700 transition-all transform hover:scale-105">
+                    Ver Servicios
+                </a>
+                <a href="https://wa.link/xdm81w" target="_blank" class="w-full sm:w-auto border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all">
+                    Hablar por WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Quienes Somos Section -->
-    <section id="quienes-somos" class="relative z-10 bg-black bg-opacity-80 section-padding rounded-2xl shadow-xl mx-4 md:mx-auto max-w-4xl my-10 border border-gray-800">
-        <div class="container mx-auto text-center">
-            <h3 class="text-4xl font-bold mb-8 text-blue-400">Quiénes Somos</h3>
-            <p class="text-lg leading-relaxed mb-6 text-justify">
-                AEROVISION es una agencia de publicidad y marketing dedicada a la formulación e implementación de estrategias de crecimiento y posicionamiento de marca. Nuestro compromiso principal radica en traducir la visión de nuestros clientes en resultados tangibles, impulsando su presencia en el mercado y fortaleciendo la conexión con su audiencia de manera efectiva.
-            </p>
-            <p class="text-lg leading-relaxed text-justify">
-                No nos limitamos exclusivamente al entorno digital; también ofrecemos soluciones integrales en publicidad tradicional, abarcando formatos como vallas publicitarias, anuncios radiofónicos y campañas televisivas. Este enfoque de 360 grados tiene como objetivo primordial complementar y potenciar las iniciativas de mercadeo de su organización, garantizando una cobertura exhaustiva y un impacto maximizado.
-            </p>
-            <p class="text-md mt-8 text-gray-400">
-                Dirigido por: Lcdo. Yolber Montañez
-            </p>
+    <!-- Quiénes Somos -->
+    <section id="quienes-somos" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto bg-white/[0.03] border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-2xl">
+            <h3 class="text-3xl md:text-4xl font-bold mb-8 text-blue-400 text-center">Quiénes Somos</h3>
+            <div class="text-gray-200 text-lg md:text-xl leading-relaxed text-center">
+                <p>
+                    AEROVISION es una agencia de publicidad y marketing especializada en el diseño e implementación de estrategias de crecimiento. Nos enfocamos en transformar la visión de nuestros clientes en resultados medibles, garantizando un posicionamiento sólido y sostenible en el mercado.
+                </p>
+            </div>
+            <div class="mt-10 pt-8 border-t border-white/10 text-center">
+                <p class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-1">Director General</p>
+                <p class="text-xl font-bold text-white">Lcdo. Yolber Montañez</p>
+            </div>
         </div>
     </section>
 
-    <!-- Nuestros Servicios Section -->
-    <section id="nuestros-servicios" class="relative z-10 section-padding">
-        <div class="container mx-auto text-center">
-            <h3 class="text-4xl font-bold mb-12 text-blue-400">Nuestros Servicios</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1: Publicaciones Semanales -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Posts" alt="Icono Publicaciones" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Publicaciones Semanales</h4>
-                    <p class="text-gray-300 text-sm">Contenido estratégico para redes sociales, manteniendo tu marca activa y relevante.</p>
+    <!-- Servicios -->
+    <section id="servicios" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-3xl md:text-4xl font-bold mb-16 text-center text-blue-400">Nuestros Servicios</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Diseño Gráfico -->
+                <div class="service-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Diseño Gráfico</h4>
+                    <p class="text-sm text-gray-400 italic">Posts y piezas visuales de alto impacto.</p>
                 </div>
-                <!-- Service Card 2: Historias Diarias -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Stories" alt="Icono Historias" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Historias Diarias</h4>
-                    <p class="text-gray-300 text-sm">Historias dinámicas para un engagement constante y efectivo con tu audiencia.</p>
+
+                <!-- Historias -->
+                <div class="service-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Historias</h4>
+                    <p class="text-sm text-gray-400 italic">Interacción diaria con tu audiencia.</p>
                 </div>
-                <!-- Service Card 3: Reels Mensuales -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Reels" alt="Icono Reels" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Reels Mensuales</h4>
-                    <p class="text-gray-300 text-sm">Videos cortos y atractivos para maximizar el alcance y la viralidad de tu marca.</p>
+
+                <!-- Reels -->
+                <div class="service-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Reels</h4>
+                    <p class="text-sm text-gray-400 italic">Contenido en video para máximo alcance.</p>
                 </div>
-                <!-- Service Card 4: Cobertura de Eventos -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Events" alt="Icono Eventos" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Cobertura de Eventos</h4>
-                    <p class="text-gray-300 text-sm">Creación de contenido en tus eventos para difusión en tiempo real y post-evento.</p>
-                </div>
-                <!-- Service Card 5: Producción de Comercial -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Ad" alt="Icono Comercial" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Producción de Comercial</h4>
-                    <p class="text-gray-300 text-sm">Desarrollo y producción de un comercial de alta calidad que destaque tu marca.</p>
-                </div>
-                <!-- Service Card 6: Informe Mensual de Crecimiento -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Report" alt="Icono Informe" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Informe Mensual de Crecimiento</h4>
-                    <p class="text-gray-300 text-sm">Análisis detallado del rendimiento de tus campañas con métricas claras y recomendaciones.</p>
-                </div>
-                <!-- Service Card 7: Diseño Gráfico -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Design" alt="Icono Diseño Gráfico" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Diseño Gráfico</h4>
-                    <p class="text-gray-300 text-sm">Materiales visuales impactantes y coherentes con la identidad de tu marca.</p>
-                </div>
-                <!-- Service Card 8: Edición de Videos -->
-                <div class="service-card p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
-                    <img src="https://placehold.co/100x100/001f3f/ffffff?text=Video" alt="Icono Edición de Videos" class="mb-4 rounded-full border border-blue-400 p-2">
-                    <h4 class="text-2xl font-semibold mb-3">Edición de Videos</h4>
-                    <p class="text-gray-300 text-sm">Edición profesional para tus contenidos audiovisuales, garantizando calidad y atractivo.</p>
+
+                <!-- Analítica -->
+                <div class="service-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Analítica</h4>
+                    <p class="text-sm text-gray-400 italic">Resultados medibles y optimización.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Inversión Section -->
-    <section id="inversion" class="relative z-10 bg-black bg-opacity-80 section-padding rounded-2xl shadow-xl mx-4 md:mx-auto max-w-4xl my-10 border border-gray-800">
-        <div class="container mx-auto text-center">
-            <h3 class="text-4xl font-bold mb-8 text-blue-400">Inversión</h3>
-            <p class="text-lg leading-relaxed mb-6">
-                Para iniciar este plan integral de crecimiento y posicionamiento de marca, la inversión inicial es de:
-            </p>
-            <div class="bg-blue-600 p-8 rounded-2xl shadow-2xl inline-block">
-                <p class="text-6xl font-extrabold text-white">$800</p>
-                <p class="text-xl text-white mt-2">Para iniciar</p>
+    <!-- Contacto -->
+    <section id="contacto" class="py-20 px-4 text-center">
+        <div class="max-w-2xl mx-auto bg-gradient-to-b from-blue-900/20 to-transparent p-12 rounded-[3rem] border border-white/5">
+            <h3 class="text-3xl font-bold mb-6">¿Hablamos de tu éxito?</h3>
+            <div class="space-y-6 mb-10">
+                <p class="text-gray-400">Contáctanos directamente para iniciar tu transformación digital.</p>
+                <div class="flex flex-col gap-4">
+                    <a href="https://wa.link/xdm81w" target="_blank" class="text-2xl md:text-3xl font-bold text-blue-400 hover:text-blue-300 transition-all">
+                        WhatsApp Directo
+                    </a>
+                    <a href="mailto:visionaero2025@gmail.com" class="text-lg text-gray-300 hover:text-white transition-colors">
+                        visionaero2025@gmail.com
+                    </a>
+                </div>
             </div>
-            <p class="text-md mt-8 text-gray-400">
-                Esta inversión te permitirá acceder a un paquete completo de servicios diseñados para generar un impacto significativo en la presencia digital y tradicional de tu organización.
-            </p>
-        </div>
-    </section>
-
-    <!-- Contacto Section -->
-    <section id="contacto" class="relative z-10 section-padding text-center">
-        <div class="container mx-auto">
-            <h3 class="text-4xl font-bold mb-8 text-blue-400">¡Hablemos de tu Próximo Éxito!</h3>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">
-                ¿Listo para transformar tu marca? Contáctanos hoy mismo para una consulta personalizada.
-            </p>
-            <a href="mailto:yolbereduardo20@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
-                Envíanos un Correo
+            <a href="https://wa.link/xdm81w" target="_blank" class="inline-block bg-blue-600 text-white px-10 py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-900/20">
+                Agendar Consulta
             </a>
-            <p class="text-md mt-4 text-gray-400">
-                O contáctanos directamente:
-            </p>
-            <p class="text-lg text-blue-300 mt-2">
-                Teléfono: <a href="tel:+584124402426" class="hover:underline">+584124402426</a>
-            </p>
-            <p class="text-lg text-blue-300">
-                Correo: <a href="mailto:yolbereduardo20@gmail.com" class="hover:underline">yolbereduardo20@gmail.com</a>
-            </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="relative z-10 bg-black bg-opacity-70 py-6 text-center text-gray-400">
-        <div class="container mx-auto">
-            <p>&copy; 2025 AEROVISION. Todos los derechos reservados.</p>
-            <p>Desarrollado por Lcdo. Yolber Montañez</p>
-            <p class="mt-2">Contacto: +584124402426 | yolbereduardo20@gmail.com</p>
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-xs md:text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2025 AEROVISION. Marca registrada.</p>
+            <p class="mt-2 italic">Resultados medibles, visión global.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scroll con offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    }
+                }
             });
-        });
-
-        // Simple animation for hero section elements on load
-        window.addEventListener('load', () => {
-            const heading = document.querySelector('.animate-fade-in-up');
-            const paragraph = document.querySelector('.animate-fade-in.delay-500');
-            const button = document.querySelector('.animate-fade-in.delay-1000');
-
-            // Apply animations by adding active class
-            heading.style.opacity = '1';
-            heading.style.transform = 'translateY(0)';
-            paragraph.style.opacity = '1';
-            button.style.opacity = '1';
         });
     </script>
 </body>
